@@ -1,0 +1,7 @@
+services:
+  auth-service:
+    build: ./auth-service
+  resource-service:
+    build: ./resource-service
+  gateway-service:
+    build: ./gateway-service

@@ -1,0 +1,13 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata: {name: spring-security-mastery}
+spec:
+  replicas: 2
+  selector: {matchLabels: {app: spring-security-mastery}}
+  template:
+    metadata: {labels: {app: spring-security-mastery}}
+    spec:
+      containers:
+        - name: app
+          image: example/spring-security-mastery:latest
+          ports: [{containerPort: 8080}]

@@ -1,0 +1,27 @@
+server:
+  port: 8082
+
+spring:
+  datasource:
+    url: ${SPRING_DATASOURCE_URL:jdbc:postgresql://localhost:5432/securitydb}
+    username: ${SPRING_DATASOURCE_USERNAME:security}
+    password: ${SPRING_DATASOURCE_PASSWORD:security}
+    driver-class-name: org.postgresql.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+    show-sql: false
+
+  flyway:
+    enabled: true
+    locations: classpath:db/migration
+
+security:
+  jwt:
+    secret: ${SECURITY_JWT_SECRET:change-this-development-secret-to-at-least-32-characters}
+    expiration-seconds: ${SECURITY_JWT_EXPIRATION_SECONDS:900}

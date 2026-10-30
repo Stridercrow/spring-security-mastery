@@ -1,0 +1,13 @@
+# Test configuration: minimal defaults.
+# TestContainerConfig @DynamicPropertySource provides datasource properties
+# from the Testcontainers PostgreSQL container at runtime.
+#
+# Do NOT set spring.datasource.* here — the DynamicPropertySource must
+# provide the URL/username/password before Spring creates the DataSource.
+server:
+  port: 0
+
+security:
+  jwt:
+    secret: test-secret-that-is-at-least-32-characters-long
+    expiration-seconds: 900

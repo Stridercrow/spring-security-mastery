@@ -1,0 +1,23 @@
+services:
+  postgres:
+    image: postgres:17-alpine
+    container_name: jwt-module-postgres
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-securitydb}
+      POSTGRES_USER: ${POSTGRES_USER:-security}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-security}
+    ports:
+      - "${POSTGRES_PORT:-5432}:5432"
+    volumes:
+      - jwt-module-pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-security} -d ${POSTGRES_DB:-securitydb}"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+    mem_limit: 512m
+    mem_reservation: 256m
+    cpus: '0.5
+
+volumes:
+  jwt-module-pgdata:
